@@ -173,22 +173,22 @@ const handleDeleteProduct = async () => {
               <Building2 className="w-4 h-4" />
               <span className="hidden sm:inline">Bank Settings</span>
             </TabsTrigger>
-            <TabsTrigger value="security" className="flex items-center gap-2">
+            {/* <TabsTrigger value="security" className="flex items-center gap-2">
               <Lock className="w-4 h-4" />
               <span className="hidden sm:inline">Security</span>
-            </TabsTrigger>
-            <TabsTrigger value="notifications" className="flex items-center gap-2">
+            </TabsTrigger> */}
+            {/* <TabsTrigger value="notifications" className="flex items-center gap-2">
               <Bell className="w-4 h-4" />
               <span className="hidden sm:inline">Notifications</span>
-            </TabsTrigger>
+            </TabsTrigger> */}
             <TabsTrigger value="loan-products" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               <span className="hidden sm:inline">Loan Products</span>
             </TabsTrigger>
-            <TabsTrigger value="roles" className="flex items-center gap-2">
+            {/* <TabsTrigger value="roles" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               <span className="hidden sm:inline">Admin Roles</span>
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           {/* Bank Settings */}

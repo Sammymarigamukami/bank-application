@@ -23,10 +23,10 @@ export default function UserHomePage() {
       </div>
 
       {/* Analytics and Savings */}
-      <div className="grid gap-6 md:grid-cols-2">
+      {/* <div className="grid gap-6 md:grid-cols-2">
         <AnalyticsCards />
         <SavingsGoals />
-      </div>
+      </div> */}
     </div>
   )
 }
