@@ -5,14 +5,14 @@ import { Button } from "~/components/ui/button"
 import { Send, Download, Receipt, Landmark } from "lucide-react"
 import { Link } from "react-router"
 import { useDeposit } from "./context/depositContext"
-import { useRequestMoney } from "./context/requestContext"
 import { useSendMoney } from "./context/sendMoneyContext"
 import { usePaybill } from "./context/paybillContext"
+import { useWithdrawal } from "./context/withdrawalContext"
 
 export function QuickActions() {
   const {setShowSendFormModal } = useSendMoney()
+  const { setShowWithdrawModal } = useWithdrawal();
   const { setShowDepositModal } = useDeposit();
-  const { setShowRequestFormModal } = useRequestMoney();
   const { setShowFormModalPaybill } = usePaybill(); // For Pay Bills, we can reuse the request money form modal state
   return (
     <Card>
@@ -37,14 +37,14 @@ export function QuickActions() {
           </Button>
 
           <Button
-           onClick={() => setShowRequestFormModal(true)}
+           onClick={() => setShowWithdrawModal(true)}
             variant="outline"
             className="h-auto flex-col gap-2 py-4 hover:bg-primary hover:text-primary-foreground"
             asChild
           >
             <Link to="#">
               <Download className="h-5 w-5" />
-              <span className="text-xs">Request Money</span>
+              <span className="text-xs">Withdraw Funds</span>
             </Link>
           </Button>
 

@@ -1150,3 +1150,29 @@ export const applyForOnlineLoan = async (data: OnlineLoanApplication): Promise<a
     );
   }
 };
+
+/**
+ * Processes a fund withdrawal
+ * POST http://localhost:8000/user/api/accounts/withdraw
+ */
+export const withdrawFunds = async (amount: string, description: string): Promise<any> => {
+  try {
+    const response = await apiClient.post("/user/api/accounts/withdraw", {
+      amount,
+      description,
+    });
+    
+    // Returns the full successful response object { success, message, data }
+    return response.data;
+  } catch (error: any) {
+    console.error("Withdrawal Error:", error);
+    
+    // Extract the specific error message from the backend
+    const errorMessage = 
+      error.response?.data?.message || 
+      error.response?.data?.error || 
+      "Unable to process withdrawal. Please try again.";
+      
+    throw new Error(errorMessage);
+  }
+};

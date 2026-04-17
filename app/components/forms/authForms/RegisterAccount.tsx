@@ -7,8 +7,6 @@ import { registerCustomer } from "~/api/auth"
 import { useNavigate } from "react-router"
 import { Loader2, UserPlus } from "lucide-react"
 
-
-
 export default function RegisterForm() {
   const navigate = useNavigate()
   const [username, setUsername] = useState<string>("")
@@ -17,13 +15,21 @@ export default function RegisterForm() {
   const [lastName, setLastName] = useState<string>("")
   const [phone, setPhone] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const [error, setError]  = useState<string | null>(null)
+  const [confirmPassword, setConfirmPassword] = useState<string>("") 
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
+
+    // Password verification logic
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.")
+      setLoading(false)
+      return
+    }
 
     const userData = {
       Username: username,
@@ -39,8 +45,8 @@ export default function RegisterForm() {
       const data = await registerCustomer(userData);
       console.log("Registration success:", data)
       navigate("/customerPortal")
-    } catch (error) {
-      console.error("Registration failed failed:", error)
+    } catch (error: any) {
+      console.error("Registration failed:", error)
       setError("Registration failed. Please check your details and try again.")
     } finally {
       setLoading(false)
@@ -146,6 +152,20 @@ export default function RegisterForm() {
                 className="h-11 bg-white/5 border-white/10 text-white placeholder:text-zinc-600 focus:border-primary focus:ring-primary transition-all"
               />
             </div>
+          </div>
+
+          {/* New Confirm Password Field */}
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword" className="text-zinc-300 text-sm">Confirm Password</Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="********"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="h-11 bg-white/5 border-white/10 text-white placeholder:text-zinc-600 focus:border-primary focus:ring-primary transition-all"
+            />
           </div>
 
           <div className="pt-2">

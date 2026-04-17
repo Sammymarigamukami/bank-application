@@ -12,8 +12,8 @@ import type { Route } from "./+types/root"
 import "./app.css"
 import { DepositProvider } from "./components/userPortal/dashboard/context/depositContext"
 import { DepositUI } from "./components/userPortal/dashboard/_components/mpesa-deposit"
-import { RequestMoneyProvider } from "./components/userPortal/dashboard/context/requestContext"
-import { RequestMoney } from "./components/userPortal/dashboard/_components/request-money"
+import { WithdrawalProvider } from "./components/userPortal/dashboard/context/withdrawalContext"
+import { WithdrawalForm } from "./components/userPortal/dashboard/_components/withdrawFund"
 import { PaybillProvider } from "./components/userPortal/dashboard/context/paybillContext"
 import { Paybill } from "./components/userPortal/dashboard/_components/paybill"
 import { SendMoneyProvider } from "./components/userPortal/dashboard/context/sendMoneyContext"
@@ -31,17 +31,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <DepositProvider>
-        <RequestMoneyProvider >
+        <WithdrawalProvider >
         <PaybillProvider>
         <SendMoneyProvider>
         {children}
         <SendMoney />
         <Paybill />
-        <RequestMoney />
+        <WithdrawalForm />
         <DepositUI />
         </SendMoneyProvider>
         </PaybillProvider>
-        </RequestMoneyProvider>
+        </WithdrawalProvider>
         </DepositProvider>
         <Toaster />
         <ScrollRestoration />
