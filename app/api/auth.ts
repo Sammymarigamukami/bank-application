@@ -1176,3 +1176,89 @@ export const withdrawFunds = async (amount: string, description: string): Promis
     throw new Error(errorMessage);
   }
 };
+
+/**
+ * Fetches all loans associated with the logged-in customer
+ * GET http://localhost:8000/loans/api/customer/loans
+ */
+export const getCustomerLoans = async (): Promise<any> => {
+  try {
+    const response = await apiClient.get("/loans/api/customer/loans");
+    
+    // Returns { success: true, count: 9, data: [...] }
+    return response.data;
+  } catch (error: any) {
+    console.error("Fetch Customer Loans Error:", error);
+    
+    const errorMessage = 
+      error.response?.data?.message || 
+      "Unable to fetch your loan history. Please try again later.";
+      
+    throw new Error(errorMessage);
+  }
+};
+
+/**
+ * Activates and verifies a specific account type for a customer
+ * PATCH /admin/api/accounts/activate/:type/:customerID/:accountType
+ */
+export const activateCustomerAccount = async (
+  customerID: string | number,
+  accountType: 'business' | 'savings'
+): Promise<any> => {
+  try {
+    // The endpoint matches your logic for both types
+    const response = await apiClient.patch(
+      `/admin/api/accounts/activate/${accountType}/${customerID}/${accountType}`
+    );
+    return response.data;
+  } catch (error: any) {
+    console.error(`Account Activation Error (${accountType}):`, error);
+    const errorMessage =
+      error.response?.data?.message || 
+      `Failed to activate ${accountType} account.`;
+    throw new Error(errorMessage);
+  }
+};
+
+/**
+ * Closes a customer's account
+ * PATCH /admin/api/accounts/close/:customerId
+ */
+export const closeCustomerAccount = async (customerId: string | number): Promise<any> => {
+  try {
+    const response = await apiClient.patch(`/admin/api/accounts/close/${customerId}`);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error closing account:", error);
+    throw new Error(error.response?.data?.message || "Failed to close account permanently.");
+  }
+};
+
+/**
+ * Suspends/Deactivates a customer
+ * PATCH /admin/api/accounts/deactivate/:customerId
+ */
+export const deactivateCustomer = async (customerId: string | number): Promise<any> => {
+  try {
+    const response = await apiClient.patch(`/admin/api/accounts/deactivate/${customerId}`);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error deactivating customer:", error);
+    throw new Error(error.response?.data?.message || "Failed to suspend customer.");
+  }
+};
+
+/**
+ * Re-activates a customer
+ * PATCH /admin/api/accounts/activate/:customerId
+ */
+export const activateCustomer = async (customerId: string | number): Promise<any> => {
+  try {
+    const response = await apiClient.patch(`/admin/api/accounts/activate/${customerId}`);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error activating customer:", error);
+    throw new Error(error.response?.data?.message || "Failed to activate customer.");
+  }
+};

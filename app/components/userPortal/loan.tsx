@@ -28,6 +28,7 @@ import {
   calculateTotalInterest,
 } from '~/lib/loan-validation'
 import { applyForOnlineLoan } from '~/api/auth'
+import UserLoansList from './dashboard/_components/loanList'
 
 
 
@@ -403,6 +404,9 @@ export default function LoanApplication() {
             </Card>
           </div>
         </div>
+        <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16">
+        <UserLoansList />
+      </div>
       </div>
     </div>
   )
