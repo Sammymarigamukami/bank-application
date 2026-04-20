@@ -1,11 +1,8 @@
 
-import { userData } from "~/lib/mock-data"
 import { BalanceCard } from "./dashboard/balance-card"
 import { QuickActions } from "./dashboard/quick-action"
 import { TransactionTable } from "./dashboard/transaction-table"
-import { AnalyticsCards } from "./dashboard/analytics-card"
 import { CardPreview } from "./dashboard/card-preview"
-import { SavingsGoals } from "./dashboard/saving-goal"
 
 export default function UserHomePage() {
   return (
@@ -21,12 +18,6 @@ export default function UserHomePage() {
         <TransactionTable className="lg:col-span-2" />
         <CardPreview />
       </div>
-
-      {/* Analytics and Savings */}
-      {/* <div className="grid gap-6 md:grid-cols-2">
-        <AnalyticsCards />
-        <SavingsGoals />
-      </div> */}
     </div>
   )
 }

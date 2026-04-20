@@ -1,270 +1,237 @@
-export const userData = {
-  name: "Null",
-  email: "null@email.com",
-  avatar: "/avatars/user.jpg",
-}
-
-export const accounts = [
-  {
-    id: "1",
-    name: "Checking Account",
-    type: "checking",
-    number: "****4521",
-    balance: 12450.0,
-  },
-  {
-    id: "2",
-    name: "Savings Account",
-    type: "savings",
-    number: "****7832",
-    balance: 45230.5,
-  },
-  {
-    id: "3",
-    name: "Business Account",
-    type: "business",
-    number: "****9156",
-    balance: 89120.75,
-  },
-]
-
-export const transactions = [
-  {
-    id: "1",
-    date: "Mar 12, 2026",
-    description: "Amazon Purchase",
-    category: "Shopping",
-    amount: -8956.99,
-    status: "completed",
-  },
-  {
-    id: "2",
-    date: "Mar 11, 2026",
-    description: "Salary Deposit",
-    category: "Income",
-    amount: 5200.0,
-    status: "completed",
-  },
-  {
-    id: "3",
-    date: "Mar 10, 2026",
-    description: "Electricity Bill",
-    category: "Utilities",
-    amount: -124.5,
-    status: "completed",
-  },
-  {
-    id: "4",
-    date: "Mar 9, 2026",
-    description: "Transfer to Savings",
-    category: "Transfer",
-    amount: -50043.0,
-    status: "completed",
-  },
-  {
-    id: "5",
-    date: "Mar 8, 2026",
-    description: "Uber Ride",
-    category: "Transport",
-    amount: -2334.45,
-    status: "completed",
-  },
-  {
-    id: "6",
-    date: "Mar 7, 2026",
-    description: "Grocery Store",
-    category: "Food",
-    amount: -1563.78,
-    status: "pending",
-  },
-]
-
-export const cardData = {
-  type: "Visa Debit",
-  number: "4521 **** **** 7832",
-  holder: "Null",
-  expiry: "09/28",
-  cvv: "***",
-}
-
-export const analytics = [
-  { category: "Food", amount: 450, color: "bg-chart-1", percentage: 30 },
-  { category: "Transport", amount: 180, color: "bg-chart-2", percentage: 12 },
-  { category: "Shopping", amount: 620, color: "bg-chart-3", percentage: 41 },
-  { category: "Utilities", amount: 250, color: "bg-chart-4", percentage: 17 },
-]
-
-export const savingsGoals = [
-  {
-    id: "1",
-    name: "Vacation Fund",
-    saved: 1200,
-    target: 3000,
-    icon: "plane",
-  },
-  {
-    id: "2",
-    name: "New Car",
-    saved: 8500,
-    target: 25000,
-    icon: "car",
-  },
-  {
-    id: "3",
-    name: "Emergency Fund",
-    saved: 4200,
-    target: 10000,
-    icon: "shield",
-  },
-]
-
-export const monthlyStats = {
-  income: 6450.0,
-  expenses: 2340.78,
-}
+import type { CustomerAccount, Loan } from "./type";
 
 
-// Mock customer and transaction data
-export interface Customer {
-  id: string;
-  name: string;
-  customerId: string;
-  accountNumber: string;
-  joinedDate: string;
-  status: 'active' | 'suspended';
-  email: string;
-  phone: string;
-  totalBalance: number;
-  totalDeposits: number;
-  totalWithdrawals: number;
-  transactionCount: number;
-  linkedAccounts?: LinkedAccount[];
-}
+export const MOCK_LOANS: Loan[] = [
+  {
+    loan_id: 1001,
+    customer_id: 101,
+    customer_name: 'John Doe',
+    customer_email: 'john.doe@example.com',
+    loan_type: 'Personal Loan',
+    amount: '50,000',
+    duration_months: 24,
+    interest_rate: '8.5%',
+    purpose: 'Home Renovation',
+    status: 'pending',
+    employment_status: 'Employed',
+    monthly_income: '5,500',
+    id_doc_url: '/documents/john_id.pdf',
+    bank_stmt_url: '/documents/john_bank.pdf',
+    created_at: '2024-03-15T10:30:00Z',
+  },
+  {
+    loan_id: 1002,
+    customer_id: 102,
+    customer_name: 'Jane Smith',
+    customer_email: 'jane.smith@example.com',
+    loan_type: 'Business Loan',
+    amount: '150,000',
+    duration_months: 36,
+    interest_rate: '7.2%',
+    purpose: 'Business Expansion',
+    status: 'approved',
+    employment_status: 'Self-Employed',
+    monthly_income: '8,200',
+    id_doc_url: '/documents/jane_id.pdf',
+    bank_stmt_url: '/documents/jane_bank.pdf',
+    created_at: '2024-02-20T14:15:00Z',
+  },
+  {
+    loan_id: 1003,
+    customer_id: 103,
+    customer_name: 'Michael Johnson',
+    customer_email: 'michael.j@example.com',
+    loan_type: 'Auto Loan',
+    amount: '35,000',
+    duration_months: 60,
+    interest_rate: '6.8%',
+    purpose: 'Vehicle Purchase',
+    status: 'disbursed',
+    employment_status: 'Employed',
+    monthly_income: '6,800',
+    id_doc_url: '/documents/michael_id.pdf',
+    bank_stmt_url: '/documents/michael_bank.pdf',
+    created_at: '2024-01-10T09:45:00Z',
+  },
+  {
+    loan_id: 1004,
+    customer_id: 104,
+    customer_name: 'Sarah Williams',
+    customer_email: 'sarah.w@example.com',
+    loan_type: 'Home Loan',
+    amount: '500,000',
+    duration_months: 240,
+    interest_rate: '5.5%',
+    purpose: 'Home Purchase',
+    status: 'active',
+    employment_status: 'Employed',
+    monthly_income: '12,000',
+    id_doc_url: '/documents/sarah_id.pdf',
+    bank_stmt_url: '/documents/sarah_bank.pdf',
+    created_at: '2023-06-01T11:20:00Z',
+  },
+  {
+    loan_id: 1005,
+    customer_id: 105,
+    customer_name: 'Robert Brown',
+    customer_email: 'robert.brown@example.com',
+    loan_type: 'Personal Loan',
+    amount: '25,000',
+    duration_months: 12,
+    interest_rate: '9.2%',
+    purpose: 'Debt Consolidation',
+    status: 'rejected',
+    employment_status: 'Unemployed',
+    monthly_income: '2,000',
+    id_doc_url: '/documents/robert_id.pdf',
+    bank_stmt_url: '/documents/robert_bank.pdf',
+    created_at: '2024-03-18T13:30:00Z',
+  },
+  {
+    loan_id: 1006,
+    customer_id: 106,
+    customer_name: 'Emily Davis',
+    customer_email: 'emily.davis@example.com',
+    loan_type: 'Education Loan',
+    amount: '80,000',
+    duration_months: 120,
+    interest_rate: '6.0%',
+    purpose: 'Higher Education',
+    status: 'active',
+    employment_status: 'Student',
+    monthly_income: '1,500',
+    id_doc_url: '/documents/emily_id.pdf',
+    bank_stmt_url: '/documents/emily_bank.pdf',
+    created_at: '2023-08-22T08:15:00Z',
+  },
+  {
+    loan_id: 1007,
+    customer_id: 107,
+    customer_name: 'David Miller',
+    customer_email: 'david.miller@example.com',
+    loan_type: 'Business Loan',
+    amount: '200,000',
+    duration_months: 48,
+    interest_rate: '7.5%',
+    purpose: 'Equipment Purchase',
+    status: 'closed',
+    employment_status: 'Self-Employed',
+    monthly_income: '9,500',
+    id_doc_url: '/documents/david_id.pdf',
+    bank_stmt_url: '/documents/david_bank.pdf',
+    created_at: '2022-05-10T15:45:00Z',
+  },
+  {
+    loan_id: 1008,
+    customer_id: 108,
+    customer_name: 'Lisa Anderson',
+    customer_email: 'lisa.anderson@example.com',
+    loan_type: 'Personal Loan',
+    amount: '45,000',
+    duration_months: 36,
+    interest_rate: '8.8%',
+    purpose: 'Medical Expenses',
+    status: 'defaulted',
+    employment_status: 'Employed',
+    monthly_income: '4,200',
+    id_doc_url: '/documents/lisa_id.pdf',
+    bank_stmt_url: '/documents/lisa_bank.pdf',
+    created_at: '2023-11-05T10:00:00Z',
+  },
+];
 
-export interface LinkedAccount {
-  id: string;
-  accountNumber: string;
-  accountType: string;
-  balance: number;
-}
-
-export interface Transaction {
-  id: string;
-  date: string;
-  type: 'deposit' | 'withdrawal' | 'transfer' | 'm-pesa';
-  description: string;
-  amount: number;
-  status: 'completed' | 'pending' | 'failed';
-}
-
-export const mockCustomer: Customer = {
-  id: '12345',
-  name: 'Robert Johnson',
-  customerId: 'CUST-2023-001',
-  accountNumber: '1234567890',
-  joinedDate: '2020-03-15',
-  status: 'active',
-  email: 'robert.johnson@example.com',
-  phone: '+254712345678',
-  totalBalance: 450000,
-  totalDeposits: 1250000,
-  totalWithdrawals: 800000,
-  transactionCount: 156,
-  linkedAccounts: [
+export const MOCK_CUSTOMER_ACCOUNTS: Record<number, CustomerAccount[]> = {
+  101: [
     {
-      id: 'acc-1',
-      accountNumber: '0987654321',
-      accountType: 'Savings',
-      balance: 250000,
+      account_id: 'ACC001',
+      account_type: 'Current Account',
+      account_number: '1234567890123',
+      balance: '25,000',
+      status: 'active',
     },
     {
-      id: 'acc-2',
-      accountNumber: '1111222233',
-      accountType: 'Business',
-      balance: 750000,
+      account_id: 'ACC002',
+      account_type: 'Savings Account',
+      account_number: '1234567890124',
+      balance: '100,000',
+      status: 'active',
+    },
+  ],
+  102: [
+    {
+      account_id: 'ACC003',
+      account_type: 'Business Account',
+      account_number: '1234567890125',
+      balance: '450,000',
+      status: 'active',
+    },
+    {
+      account_id: 'ACC004',
+      account_type: 'Current Account',
+      account_number: '1234567890126',
+      balance: '85,000',
+      status: 'active',
+    },
+  ],
+  103: [
+    {
+      account_id: 'ACC005',
+      account_type: 'Savings Account',
+      account_number: '1234567890127',
+      balance: '250,000',
+      status: 'active',
+    },
+    {
+      account_id: 'ACC006',
+      account_type: 'Fixed Deposit Account',
+      account_number: '1234567890128',
+      balance: '500,000',
+      status: 'active',
+    },
+  ],
+  104: [
+    {
+      account_id: 'ACC007',
+      account_type: 'Current Account',
+      account_number: '1234567890129',
+      balance: '120,000',
+      status: 'active',
+    },
+  ],
+  105: [
+    {
+      account_id: 'ACC008',
+      account_type: 'Savings Account',
+      account_number: '1234567890130',
+      balance: '5,000',
+      status: 'inactive',
+    },
+  ],
+  106: [
+    {
+      account_id: 'ACC009',
+      account_type: 'Savings Account',
+      account_number: '1234567890131',
+      balance: '15,000',
+      status: 'active',
+    },
+  ],
+  107: [
+    {
+      account_id: 'ACC010',
+      account_type: 'Business Account',
+      account_number: '1234567890132',
+      balance: '750,000',
+      status: 'active',
+    },
+  ],
+  108: [
+    {
+      account_id: 'ACC011',
+      account_type: 'Current Account',
+      account_number: '1234567890133',
+      balance: '8,000',
+      status: 'active',
     },
   ],
 };
-
-export const mockTransactions: Transaction[] = [
-  {
-    id: '1',
-    date: '2024-03-28',
-    type: 'm-pesa',
-    description: 'M-Pesa: 254712345678',
-    amount: 50000,
-    status: 'completed',
-  },
-  {
-    id: '2',
-    date: '2024-03-27',
-    type: 'withdrawal',
-    description: 'ATM Withdrawal - Nairobi Branch',
-    amount: -25000,
-    status: 'completed',
-  },
-  {
-    id: '3',
-    date: '2024-03-26',
-    type: 'deposit',
-    description: 'Salary Deposit - Monthly',
-    amount: 150000,
-    status: 'completed',
-  },
-  {
-    id: '4',
-    date: '2024-03-25',
-    type: 'transfer',
-    description: 'Transfer to Jane Smith - Account 0987654321',
-    amount: -75000,
-    status: 'completed',
-  },
-  {
-    id: '5',
-    date: '2024-03-24',
-    type: 'm-pesa',
-    description: 'M-Pesa: 254798765432',
-    amount: 30000,
-    status: 'completed',
-  },
-  {
-    id: '6',
-    date: '2024-03-23',
-    type: 'withdrawal',
-    description: 'ATM Withdrawal - Westgate Branch',
-    amount: -40000,
-    status: 'pending',
-  },
-  {
-    id: '7',
-    date: '2024-03-22',
-    type: 'deposit',
-    description: 'Check Deposit',
-    amount: 100000,
-    status: 'completed',
-  },
-  {
-    id: '8',
-    date: '2024-03-21',
-    type: 'transfer',
-    description: 'Transfer from Michael Brown - Account 5555666677',
-    amount: 120000,
-    status: 'failed',
-  },
-  {
-    id: '9',
-    date: '2024-03-20',
-    type: 'withdrawal',
-    description: 'Bill Payment - Electricity',
-    amount: -15000,
-    status: 'completed',
-  },
-  {
-    id: '10',
-    date: '2024-03-19',
-    type: 'm-pesa',
-    description: 'M-Pesa: 254723456789',
-    amount: 25000,
-    status: 'completed',
-  },
-];

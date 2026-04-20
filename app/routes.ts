@@ -20,12 +20,13 @@ export default [
     route("adminPortal", "adminPortal/pages/layout.tsx", [
         index("adminPortal/pages/dashboard.tsx"),
         route("customers/:customerId", "adminPortal/pages/customer-profile.tsx"),
+        route("loans/:id", "adminPortal/pages/loanDetailsPage.tsx"),
+        route("loans", "adminPortal/pages/loan.tsx"),
         route("Settings", "adminPortal/pages/settings.tsx"),
         route("Transactions", "adminPortal/pages/transactions.tsx"),
         route("customers", "adminPortal/pages/customers.tsx"),
         route("Accounts", "adminPortal/pages/account.tsx"),
         route("Approvals", "adminPortal/pages/approvals.tsx"),
-        route("Loans", "adminPortal/pages/loan.tsx"),
         route("Fraud", "adminPortal/pages/fraud.tsx"),
         route("Reports", "adminPortal/pages/report.tsx"),
     ])

@@ -1262,3 +1262,46 @@ export const activateCustomer = async (customerId: string | number): Promise<any
     throw new Error(error.response?.data?.message || "Failed to activate customer.");
   }
 };
+
+/**
+ * Fetches all notifications for the user
+ * GET /user/api/notifications
+ */
+export const getNotifications = async (): Promise<any> => {
+  try {
+    const response = await apiClient.get('/user/api/notifications');
+    return response.data;
+  } catch (error: any) {
+    console.error("Error fetching notifications:", error);
+    throw new Error(error.response?.data?.message || "Failed to fetch notifications.");
+  }
+};
+
+/**
+ * Marks a specific notification as read
+ * PATCH /user/api/notifications/:id/read
+ */
+export const markNotificationAsRead = async (id: string | number): Promise<any> => {
+  try {
+    const response = await apiClient.patch(`/user/api/notifications/${id}/read`);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error marking notification as read:", error);
+    throw new Error(error.response?.data?.message || "Failed to update notification.");
+  }
+};
+
+
+/**
+ * Deletes a specific notification
+ * DELETE /user/api/notifications/:id
+ */
+export const deleteNotification = async (id: string | number): Promise<any> => {
+  try {
+    const response = await apiClient.delete(`/user/api/notifications/${id}`);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error deleting notification:", error);
+    throw new Error(error.response?.data?.message || "Failed to delete notification.");
+  }
+};

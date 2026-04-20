@@ -1,120 +1,71 @@
-// Customer types
-export type CustomerStatus = 'active' | 'inactive' | 'suspended'
-export type AccountType = 'checking' | 'savings' | 'credit'
-
-export interface Customer {
-  id: string
-  name: string
-  email: string
-  phone: string
-  accountType: AccountType
-  status: CustomerStatus
-  joinDate: string
-  totalBalance: number
-}
-
-// Account types
-export type AccountStatus = 'active' | 'frozen' | 'closed'
-
-export interface Account {
-  number: string
-  customerName: string
-  customerId: string
-  type: AccountType
-  balance: number
-  status: AccountStatus
-  lastActivity: string
-}
-
-// Transaction types
-export type TransactionType = 'deposit' | 'withdrawal' | 'transfer' | 'payment'
-export type TransactionStatus = 'completed' | 'pending' | 'failed'
-
-export interface Transaction {
-  id: string
-  accountNumber: string
-  type: TransactionType
-  amount: number
-  date: string
-  status: TransactionStatus
-  description: string
-  recipientAccount?: string
-}
-
-// Loan types
-export type LoanStatus = 'pending' | 'approved' | 'rejected' | 'active' | 'completed'
-export type LoanType = 'personal' | 'home' | 'auto' | 'business'
+export type LoanStatus = 'pending' | 'approved' | 'rejected' | 'disbursed' | 'active' | 'closed' | 'defaulted';
 
 export interface Loan {
-  id: string
-  customerId: string
-  customerName: string
-  type: LoanType
-  amountRequested: number
-  amountApproved?: number
-  duration: number
-  interestRate?: number
-  status: LoanStatus
-  applicationDate: string
+  loan_id: number;
+  customer_id: number;
+  customer_name: string;
+  customer_email: string;
+  loan_type: string;
+  amount: string;
+  duration_months: number;
+  interest_rate: string;
+  purpose: string;
+  status: LoanStatus;
+  employment_status: string;
+  monthly_income: string;
+  id_doc_url: string;
+  bank_stmt_url: string;
+  created_at: string;
 }
 
-// Fraud Alert types
-export type FraudRiskLevel = 'high' | 'medium' | 'low'
-export type FraudAlertType = 'unusual_transaction' | 'multiple_failed_logins' | 'geographic_anomaly' | 'velocity_check'
-
-export interface FraudAlert {
-  id: string
-  accountNumber: string
-  customerName: string
-  type: FraudAlertType
-  riskLevel: FraudRiskLevel
-  amount?: number
-  date: string
-  description: string
+export interface CustomerAccount {
+  account_id: string;
+  account_type: 'Business Account' | 'Current Account' | 'Savings Account' | 'Fixed Deposit Account';
+  account_number: string;
+  balance: string;
+  status: 'active' | 'inactive';
 }
 
-// Transfer Approval types
-export type ApprovalStatus = 'pending' | 'approved' | 'rejected'
-
-export interface TransferApproval {
-  id: string
-  fromAccount: string
-  toAccount: string
-  fromCustomer: string
-  toCustomer: string
-  amount: number
-  date: string
-  status: ApprovalStatus
-  reason?: string
+export interface StatusColor {
+  badge: string;
+  text: string;
+  bg: string;
 }
 
-// System Activity types
-export interface SystemActivity {
-  id: string
-  date: string
-  user: string
-  action: string
-  account?: string
-  amount?: number
-  status: 'success' | 'failed'
-}
-
-// Dashboard Stats
-export interface DashboardStats {
-  totalCustomers: number
-  activeAccounts: number
-  totalTransactions: number
-  pendingApprovals: number
-  totalTransactionVolume: number
-  highRiskAlerts: number
-}
-
-export interface LoanProduct {
-  loan_type_id: number
-  type_name: string
-  base_interest_rate: number
-  max_duration_months: number
-  min_amount: number
-  max_amount: number
-  is_online: boolean
-}
+export const STATUS_COLORS: Record<LoanStatus, StatusColor> = {
+  pending: {
+    badge: 'bg-yellow-100 text-yellow-800',
+    text: 'text-yellow-600',
+    bg: 'bg-yellow-50',
+  },
+  approved: {
+    badge: 'bg-blue-100 text-blue-800',
+    text: 'text-blue-600',
+    bg: 'bg-blue-50',
+  },
+  rejected: {
+    badge: 'bg-red-100 text-red-800',
+    text: 'text-red-600',
+    bg: 'bg-red-50',
+  },
+  disbursed: {
+    badge: 'bg-purple-100 text-purple-800',
+    text: 'text-purple-600',
+    bg: 'bg-purple-50',
+  },
+  active: {
+    badge: 'bg-green-100 text-green-800',
+    text: 'text-green-600',
+    bg: 'bg-green-50',
+  },
+  closed: {
+    badge: 'bg-gray-100 text-gray-800',
+    text: 'text-gray-600',
+    bg: 'bg-gray-50',
+  },
+  defaulted: {
+    badge: 'bg-black text-white',
+    text: 'text-black',
+    bg: 'bg-black/5',
+  },
+};
